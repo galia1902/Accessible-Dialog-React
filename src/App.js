@@ -12,6 +12,7 @@ class App extends Component {
       isDialogOpen: false,
       persistentFocus: false,
     };
+    
   }
 
   enableSelection() {
@@ -23,6 +24,7 @@ class App extends Component {
   }
 
 
+
   render() {
     const ariaHiddenProp = this.state.isDialogOpen ? { 'aria-hidden': true } : {}
     return (
@@ -31,11 +33,16 @@ class App extends Component {
         <Dialog
           persistentFocus={this.state.persistentFocus}
           open={this.state.isDialogOpen}
-          onClose={() => this.setState({isDialogOpen: false})}
+          onClose={() => this.setState({isDialogOpen: false}) 
+          }
           >
           {closeDialog => (
             <div>
-              This is some message <span className="close" onClick={closeDialog}>X</span>
+              <button className="close" onClick={closeDialog}  tabIndex={2}></button>
+              <div>
+              This is some message 
+              </div>
+               
             </div>
           )}
         </Dialog>

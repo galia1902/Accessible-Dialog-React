@@ -49,7 +49,7 @@ export class Dialog extends React.Component {
   }
 
   handleKeyPress(e) {
-    if (e.keyCode === 27 || e.keyCode === 13) {
+    if (e.keyCode === 27) {
       this.props.onClose();
     }
   }
