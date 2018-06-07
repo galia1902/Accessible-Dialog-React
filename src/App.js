@@ -5,40 +5,53 @@ import { Dialog } from "./dialog";
 import FocusLock from "react-focus-lock";
 
 class App extends Component {
-  state = {
-    isDialogOpen: false,
-    persistentFocus: false
-  };
 
-  enableSelection = () => this.setState({ persistentFocus: false });
-  disableSelection = () => this.setState({ persistentFocus: true });
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDialogOpen: false,
+      persistentFocus: false,
+    };
+  }
+
+  enableSelection() {
+    this.setState({ persistentFocus: false });
+  }
+
+  disableSelection() {
+    this.setState({ persistentFocus: true });
+  }
+
 
   render() {
+    const ariaHiddenProp = this.state.isDialogOpen ? { 'aria-hidden': true } : {}
     return (
       <div className="App">
+      {/* this.props.onClose() */}
         <Dialog
           persistentFocus={this.state.persistentFocus}
-          closeButton
           open={this.state.isDialogOpen}
-          onClose={() => this.setState({ isDialogOpen: undefined })}
-        >
-          Hello this is a dialog box
-        </Dialog>
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header> */}
-        <p className="App-intro">This is a React dialog demo</p>
-        <p>
-          <button
-            className="dialog-btn"
-            onClick={() =>
-              this.setState({ isDialogOpen: true, persistentFocus: true })
-            }
+          onClose={() => this.setState({isDialogOpen: false})}
           >
-            Check It Out
-          </button>
-        </p>
+          {closeDialog => (
+            <div>
+              This is some message <span className="close" onClick={closeDialog}>X</span>
+            </div>
+          )}
+        </Dialog>
+        <div {...ariaHiddenProp}>
+          <p className="App-intro">This is a React dialog demo</p>
+          <p>
+            <button
+              className="dialog-btn"
+              onClick={() =>
+                this.setState({ isDialogOpen: true, persistentFocus: true })
+              }
+            >
+              Check It Out
+            </button>
+          </p>
+        </div>
       </div>
     );
   }

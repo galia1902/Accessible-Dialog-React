@@ -4,14 +4,14 @@ import FocusLock from "react-focus-lock";
 
 import "./dialog.css";
 
+
 const dialogContainer = document.querySelector("#portal");
 
 export class Dialog extends React.Component {
   static defaultProps = {
     dialogProps: {},
-    closeButton: true,
-    onCloseClick: () => {},
-    open: false
+    open: false,
+    onClose: () => {}
   };
 
   containerEl;
@@ -23,7 +23,6 @@ export class Dialog extends React.Component {
     super(props);
     this.containerEl = document.createElement("div");
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.closeOnEnter = this.closeOnEnter.bind(this);
     this.boxRef = React.createRef();
   }
 
@@ -50,18 +49,12 @@ export class Dialog extends React.Component {
   }
 
   handleKeyPress(e) {
-    if (e.keyCode === 27) {
+    if (e.keyCode === 27 || e.keyCode === 13) {
       this.props.onClose();
     }
   }
 
-  closeOnEnter(e) {
-    if (e.keyCode === 13){
-      this.props.onClose();
-    }
-  }
-
-  toggle = () => this.setState({ disabled: !this.state.disabled });
+  // toggle = () => this.setState({ disabled: !this.state.disabled });
 
   renderDialogBlock() {
     const { disabled } = this.state;
@@ -82,20 +75,12 @@ export class Dialog extends React.Component {
               {...dialogProps}
               className="box"
               tabIndex={-1}
-              autofocus
+              autoFocus
               ref={this.boxRef}
               onKeyDown={this.handleKeyPress}
             >
-              {closeButton && (
-                <span 
-                className="close" 
-                onClick={onClose} 
-                tabIndex={1} 
-                onKeyDown={this.closeOnEnter}
-                aria-pressed="false" />
-              )}
               <div role="document" tabIndex={2}>
-                {children}
+                {this.props.children(onClose)}
               </div>
             </div>
           </div>
