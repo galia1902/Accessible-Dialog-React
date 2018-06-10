@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Dialog } from "./dialog";
-import FocusLock from "react-focus-lock";
+
 
 class App extends Component {
 
@@ -29,7 +29,6 @@ class App extends Component {
     const ariaHiddenProp = this.state.isDialogOpen ? { 'aria-hidden': true } : {}
     return (
       <div className="App">
-      {/* this.props.onClose() */}
         <Dialog
           persistentFocus={this.state.persistentFocus}
           open={this.state.isDialogOpen}
