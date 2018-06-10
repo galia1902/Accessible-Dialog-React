@@ -15,20 +15,26 @@ class App extends Component {
     
   }
 
-  enableSelection() {
-    this.setState({ persistentFocus: false });
-  }
-
-  disableSelection() {
-    this.setState({ persistentFocus: true });
-  }
-
+  
 
 
   render() {
     const ariaHiddenProp = this.state.isDialogOpen ? { 'aria-hidden': true } : {}
     return (
       <div className="App">
+        <div {...ariaHiddenProp}>
+          <p className="App-intro">This is a React dialog demo</p>
+          <p>
+            <button
+              className="dialog-btn"
+              onClick={() =>
+                this.setState({ isDialogOpen: true, persistentFocus: true })
+              }
+            >
+              Check It Out
+            </button>
+          </p>
+        </div>
         <Dialog
           persistentFocus={this.state.persistentFocus}
           open={this.state.isDialogOpen}
@@ -45,19 +51,6 @@ class App extends Component {
             </div>
           )}
         </Dialog>
-        <div {...ariaHiddenProp}>
-          <p className="App-intro">This is a React dialog demo</p>
-          <p>
-            <button
-              className="dialog-btn"
-              onClick={() =>
-                this.setState({ isDialogOpen: true, persistentFocus: true })
-              }
-            >
-              Check It Out
-            </button>
-          </p>
-        </div>
       </div>
     );
   }

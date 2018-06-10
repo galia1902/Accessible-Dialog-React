@@ -24,7 +24,7 @@ html {
 .dialog-btn {
   border-width: 3px;
   border-style: solid;
-  border-color: #fff;
+  border-color: #fff; 
   position: relative;
   top: 30px;
   padding: 20px 30px;
@@ -48,7 +48,7 @@ html {
     border-color: #45dbff;
     border-width: 3px;
     border-style: solid;
-    box-sizing: border-box; }
+   }
   /* line 53, /Users/Noam/Dropbox (0815)/Work Desk/Gali code/Rain/style/style.scss */
   .dialog-btn:active {
     transform: scale(1);
