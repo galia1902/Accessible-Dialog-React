@@ -1,2 +1,2 @@
 check out the demo:
-accessible-dialog-react-demo.netlify.app
+https://accessible-dialog-react-demo.netlify.app/
